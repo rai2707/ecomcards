@@ -1,25 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, fetchProducts, selectedProduct } from "../redux/Action";
+import "./Body.scss";
+import { AiOutlineHeart } from "react-icons/ai";
+import Loader from "./LoaderComponent";
 
-export default function Body (){
+export default function Body() {
+  const dispatch = useDispatch();
+  const { loading, products, error } = useSelector((state) => state);
 
-    const [card, setCard] = useState([])
-    const fetchData = async () =>{
-        const res = await fetch('https://fakestoreapi.com/products')
-        const data = await res.json()
-        setCard(data)
-        console.log(data)
-    }
-    useEffect(() =>{
-        fetchData()
-    }, [])
-    return (
-        <div>
-            {card.map((ele)=>(
-                <div>
-                    <h1>{ele.category}</h1>
-                    <h1>{ele.price}</h1>
-                </div>
-            ))}
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  console.log(products);
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+  const handleCardClick = (product) => {
+    dispatch(selectedProduct(product));
+  };
+
+  return (
+    <div className="product-list">
+      {loading && (
+        <div className="loader-container">
+          <Loader />
         </div>
-    )
+      )}
+      {error && <p>{error}</p>}
+      {products.map((ele) => (
+        <div
+          className="product-card"
+          key={ele.id}
+          onClick={() => handleCardClick(ele)}
+        >
+          <div className="wishlist-icon">
+            <AiOutlineHeart />
+          </div>
+          <img className="product-image" src={ele.images[0]} alt={ele.title} />
+          <p className="product-title">{ele.title}</p>
+          <p className="product-price">₹{ele.price}</p>
+          <p className="product-discounted-price">
+            ₹{(ele.price * (1 - ele.discountPercentage / 100)).toFixed(2)}
+          </p>
+          <p className="product-discount">
+            {Math.round(ele.discountPercentage)}% OFF
+          </p>
+          <button
+            className="add-to-cart-btn"
+            onClick={() => handleAddToCart(ele)}
+          >
+            Add
+          </button>
+        </div>
+      ))}
+    </div>
+  );
 }

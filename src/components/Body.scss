@@ -1,0 +1,118 @@
+$primary-color: #248ecb;
+$hover-color: darken($primary-color, 10%);
+$discount-color: #4caf50;
+$discounted-price-color: #d32f2f;
+$border-color: #e0e0e0;
+$text-color: #333;
+$text-color-light: #555;
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+  justify-content: center;
+}
+
+.product-card {
+  width: 200px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .wishlist-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  .product-image {
+    width: 100%;
+    height: 130px;
+    margin-bottom: 12px;
+  }
+
+  .product-title {
+    font-size: 14px;
+    color: $text-color;
+    margin-bottom: 8px;
+  }
+
+  .product-price {
+    font-size: 16px;
+    color: $text-color-light;
+    text-decoration: line-through;
+  }
+
+  .product-discounted-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: $discounted-price-color;
+    margin-bottom: 8px;
+  }
+
+  .product-discount {
+    font-size: 14px;
+    color: $discount-color;
+    margin-bottom: 12px;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 8px;
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+}
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loader {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: #000;
+    animation: rotate 1s ease-in-out infinite;
+  }
+  
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Optional: full-screen centered loader */
+  }
+  
