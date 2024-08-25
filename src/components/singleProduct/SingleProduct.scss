@@ -1,0 +1,155 @@
+.product-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+  
+  .product-image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    img {
+      max-width: 400px;
+      height: 400;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+  
+    .buttons {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+  
+      .buy-now, .add-to-cart {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+      }
+  
+      .buy-now {
+        background-color: #ff9800;
+        color: white;
+      }
+  
+      .add-to-cart {
+        background-color: #007bff;
+        color: white;
+      }
+    }
+  }
+  
+  .product-details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+    .product-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  
+    .product-brand {
+      font-size: 18px;
+      color: #757575;
+    }
+  
+    .product-price {
+      font-size: 20px;
+      color: #ff5722;
+  
+      .discount-percentage {
+        font-size: 16px;
+        color: #388e3c;
+        margin-left: 10px;
+      }
+    }
+  
+    .product-description {
+      font-size: 16px;
+      color: #757575;
+    }
+  
+    .product-rating {
+      font-size: 16px;
+      color: #ffc107;
+    }
+  
+    .product-reviews {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  
+    .reviews-list {
+        list-style-type: none;
+        padding: 0;
+      
+        li {
+          font-size: 14px;
+          margin-bottom: 10px;
+      
+          .review-stars {
+            display: inline-flex;
+            margin-left: 5px;
+      
+            .star {
+              font-size: 14px;
+              color: #ffc107;
+      
+              &.empty {
+                color: #e0e0e0;
+              }
+            }
+          }
+        }
+      }
+      
+  
+    .product-stock {
+      font-size: 14px;
+      color: #388e3c;
+    }
+  
+    .offers {
+      background-color: #e8f5e9;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+  
+      h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+  
+      ul {
+        padding-left: 20px;
+        list-style-type: disc;
+  
+        li {
+          font-size: 14px;
+          color: #388e3c;
+        }
+      }
+    }
+  
+    .back-link {
+      margin-top: 20px;
+      font-size: 14px;
+      text-decoration: underline;
+      color: #007bff;
+      cursor: pointer;
+    }
+  }
+  

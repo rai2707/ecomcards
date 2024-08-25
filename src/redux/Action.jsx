@@ -2,7 +2,10 @@ export const RequestData = "REQUEST_DATA";
 export const SuccessData = "SUCCESS_DATA";
 export const FailureData = "FAILURE_DATA";
 export const AddToCart = "ADD_TO_CART";
-export const SetSelectedProcuct = "SET_SELECTED_PRODUCT";
+export const SelectedProcuct = "SET_SELECTED_PRODUCT";
+export const RemoveFromCart = "REMOVE_FROM_CART";
+export const DecrementQuantity = "DECREMENT_QUANTITY";
+export const IncrementQuantity = "INCREMENT_QUANTITY";
 
 export const fetchProductsRequest = () => ({
   type: "REQUEST_DATA",
@@ -15,16 +18,30 @@ export const fetchProductsError = (error) => ({
   type: "FAILURE_DATA",
   payload: error,
 });
-export const addToCart = (product) =>{
+export const addToCart = (products) =>{
   return{
     type: "ADD_TO_CART",
-    payload: product
+    payload: products
   }
 }
-export const selectedProduct = (product) =>{
+export const removeFromCart = (product) => ({
+  type: RemoveFromCart,
+  payload: product,
+});
+
+export const decrementQuantity = (product) => ({
+  type: DecrementQuantity,
+  payload: product,
+});
+
+export const incrementQuantity = (product) => ({
+  type: IncrementQuantity,
+  payload: product,
+});
+export const selectedProduct = (products) =>{
   return{
     type: "SET_SELECTED_PRODUCT",
-    payload: product
+    payload: products
   }
 }
 export const fetchProducts = () => {

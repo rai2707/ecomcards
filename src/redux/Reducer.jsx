@@ -23,15 +23,54 @@ export const Reducer = (state = initialState, action) => {
     case "FAILURE_DATA":
       return {
         loading: false,
-        products:[],
+        products: [],
         error: action.payload,
       };
-      case "ADD_TO_CART":	
+    case "ADD_TO_CART":
+      const product = action.payload;
+      const existingProduct = state.cart.findIndex(
+        (item) => item.id === product.id
+      );
+      if (existingProduct > -1) {
+        return {
+          ...state,
+          cart: state.cart.map((item, index) =>
+            index === existingProduct
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cart: [...state.cart, { ...product, quantity: 1 }],
+        };
+      }
+    case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
       };
-      case "SET_SELECTED_PRODUCT":
+    case "DECREMENT_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: Math.max(item.quantity - 1, 1) } // Ensure quantity is at least 1
+            : item
+        ),
+      };
+    case "INCREMENT_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+
+    case "SET_SELECTED_PRODUCT":
       return {
         ...state,
         selectedProduct: action.payload,

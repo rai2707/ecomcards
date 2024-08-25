@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   padding: 16px 20px;
+  position: relative; /* Add position relative to contain absolutely positioned children */
 
   .logo {
     display: flex;
@@ -47,8 +48,9 @@
     padding: 5px 10px;
     margin-left: 20px;
     width: 50%;
+    position: relative; /* Add position relative to the search bar */
 
-    .search{
+    .search {
       color: white;
       font-size: 18px;
       padding: 6px;
@@ -63,10 +65,12 @@
       padding: 5px;
       font-size: 16px;
     }
+
     ::placeholder {
       color: white;
-      opacity: 0.7; 
+      opacity: 0.7;
     }
+
     &:focus {
       outline: none;
     }
@@ -77,9 +81,20 @@
     align-items: center;
     margin-left: auto;
     justify-content: space-between;
-    .cart{
+
+    .cart {
       font-size: 25px;
-      color:white;
+      color: white;
+    }
+
+    .cart-count {
+      position: relative;
+      bottom: 15px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 7px;
+      font-size: 12px;
     }
 
     & > * {
@@ -96,13 +111,69 @@
       font-weight: bold;
       display: flex;
       align-items: center;
-      .user{
+
+      .user {
         font-size: 22px;
         margin: 0 10px;
       }
 
       i {
         margin-right: 5px;
+      }
+    }
+  }
+
+  .search-results {
+    position: absolute;
+    top: 100%; /* Position below the search bar */
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    // z-index: 1000; /* Ensure it appears above other content */
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-decoration: none;
+      color: #333;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .product-image {
+        width: 50px;
+        height: 50px;
+        // object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .product-info {
+        .product-title {
+          font-size: 14px;
+          margin: 0;
+        }
+
+        .product-price,
+        .product-discounted-price,
+        .product-discount {
+          font-size: 12px;
+          margin: 0;
+        }
+
+        .product-discounted-price {
+          font-weight: bold;
+          color: #d32f2f;
+        }
+
+        .product-discount {
+          color: #4caf50;
+        }
       }
     }
   }
