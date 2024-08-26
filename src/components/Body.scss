@@ -1,3 +1,4 @@
+// Variables
 $primary-color: #248ecb;
 $hover-color: darken($primary-color, 10%);
 $discount-color: #4caf50;
@@ -6,17 +7,21 @@ $border-color: #e0e0e0;
 $text-color: #333;
 $text-color-light: #555;
 
+// Product List
 .product-list {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
-  justify-content: center;
+  justify-content: center; /* Center align product cards */
 }
-.link{
+
+// Link Style
+.link {
   text-decoration: none;
 }
 
+// Product Card
 .product-card {
   width: 200px;
   border: 1px solid $border-color;
@@ -25,7 +30,7 @@ $text-color-light: #555;
   text-align: center;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-3px);
@@ -39,7 +44,7 @@ $text-color-light: #555;
     font-size: 20px;
     color: #888;
     cursor: pointer;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease;
 
     &:hover {
       color: $primary-color;
@@ -49,6 +54,7 @@ $text-color-light: #555;
   .product-image {
     width: 100%;
     height: 130px;
+    object-fit: cover;
     margin-bottom: 12px;
   }
 
@@ -93,29 +99,36 @@ $text-color-light: #555;
   }
 }
 
+// Loader Animation
 @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .loader {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    border-top-color: #000;
-    animation: rotate 1s ease-in-out infinite;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .loader-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Optional: full-screen centered loader */
-  }
-  
+}
+
+.loader {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: black;
+  animation: rotate 1s linear infinite;
+}
+
+// Loader Container
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  width: 100vw; 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8); 
+  z-index: 1000; 
+}

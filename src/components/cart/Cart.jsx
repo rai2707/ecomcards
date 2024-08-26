@@ -102,9 +102,7 @@ export default function Cart() {
                   .reduce(
                     (total, item) =>
                       total +
-                      ((item.price * item.discountPercentage) / 100) *
-                        item.quantity,
-                    0
+                      ((item.price * item.discountPercentage) / 100) * item.quantity, 0
                   )
                   .toFixed(2)}
               </span>
@@ -152,3 +150,5 @@ export default function Cart() {
     </div>
   );
 }
+// Avoid toFixed in production
+// Remove and save for later used as button

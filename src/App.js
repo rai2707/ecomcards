@@ -5,12 +5,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import SingleProduct from "./components/singleProduct/SingleProduct";
 import Cart from "./components/cart/Cart";
 import OrderPlaced from "./components/orderPlaced/OrderPlace";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   return (
     <div>
       <Router>
-      <Header />
+        <Header />
         <Routes>
           {/* <Route path="/header" element={<Header />} exact="true"></Route> */}
           <Route path="/" element={<Body />}></Route>
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/orderplaced" element={<OrderPlaced />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

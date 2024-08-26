@@ -4,13 +4,14 @@ import { FaCartShopping, FaUser } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts, selectedProduct } from "../../redux/Action";
+import { fetchProducts } from "../../redux/Action";
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const cartItems = useSelector((state) => state.cart);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -19,15 +20,19 @@ function Header() {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  console.log(searchQuery)
 
-  const handleSearch = () => {
-    const product = products.find((product) =>
-      product.title.toLowerCase() !== searchQuery.toLowerCase()
-    );
-    if (product) {
-      dispatch(selectedProduct(product));
+  useEffect(() => {
+    if (searchQuery.trim() !== "") {
+      const product = products.find((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) 
+      );
+      setSelectedProduct(product || null);
+    } else {
+      setSelectedProduct(null);
     }
-  };
+  }, [searchQuery, products]);
+  console.log("selected==",selectedProduct);
 
   return (
     <header className="header">
@@ -44,7 +49,7 @@ function Header() {
         <span>Deliver to Mumbai 400020</span>
       </div>
       <div className="search-bar">
-        <FaSearch className="search" onClick={handleSearch} />
+        <FaSearch className="search" />
         <input
           type="text"
           placeholder="Search JioMart"
@@ -64,6 +69,24 @@ function Header() {
           Sign In
         </div>
       </div>
+
+      {selectedProduct && (
+        <div className="product-card">
+          <Link to={`/product/${selectedProduct.id}`} key={selectedProduct.id}>
+            <img src={selectedProduct.images[0]} alt={selectedProduct.title} className="product-image" />
+            <div className="product-info">
+              <p className="product-title">{selectedProduct.title}</p>
+              <p className="product-price">₹{selectedProduct.price}</p>
+              <p className="product-discounted-price">
+                ₹{(selectedProduct.price * (1 - selectedProduct.discountPercentage / 100)).toFixed(2)}
+              </p>
+              <p className="product-discount">
+                {Math.round(selectedProduct.discountPercentage)}% OFF
+              </p>
+            </div>
+          </Link>
+        </div>
+      )}
     </header>
   );
 }
