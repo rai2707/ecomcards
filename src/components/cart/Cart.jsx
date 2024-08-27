@@ -83,7 +83,7 @@ export default function Cart() {
           <h4>PRICE DETAILS</h4>
           <div className="price-breakdown">
             <p>
-              Price ({cartItems.length} items){" "}
+              Price ({cartItems.length} items)
               <span>
                 ₹
                 {cartItems
