@@ -5,16 +5,14 @@ import { Link } from "react-router-dom";
 import "./SingleProduct.scss";
 import { FaRegStar, FaStar } from "react-icons/fa6";
 import Loader from "../LoaderComponent";
-// import Loader from "./LoaderComponent";
 
 export default function SingleProduct() {
   const dispatch = useDispatch();
   const selectedProduct = useSelector((state) => state.selectedProduct);
-  const loading = useSelector((state) => state.loading); // Assuming `loading` is in your state
+  const loading = useSelector((state) => state.loading);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch products if not already fetched
     if (!selectedProduct) {
       dispatch(fetchProducts());
     } else {

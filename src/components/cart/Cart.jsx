@@ -20,7 +20,6 @@ export default function Cart() {
     dispatch(incrementQuantity(item));
   };
 
-  // If the cart is empty, show only the empty cart message
   if (cartItems.length === 0) {
     return (
       <div className="cart-container">

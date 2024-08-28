@@ -1,5 +1,5 @@
 import React from 'react';
-import './EmptyCart.scss'; // Import the SASS file
+import './EmptyCart.scss';
 
 const EmptyCart = () => {
   return (
