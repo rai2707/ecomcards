@@ -102,7 +102,7 @@ export default function SingleProduct() {
           </ul>
         </div>
         <Link className="back-link" to="/">
-          Back To Home
+          Home
         </Link>
       </div>
     </div>
