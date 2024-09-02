@@ -102,6 +102,7 @@ export default function SingleProduct() {
           </ul>
         </div>
         <Link className="back-link" to="/">
+        {/* <Link className="back-link" to="/"> */}
           Home
         </Link>
       </div>
