@@ -57,7 +57,7 @@ export default function SingleProduct() {
   }
 
   if (!selectedProduct) {
-    return <p>No product selected.</p>;
+    return <p>No product selected</p>;
   }
 
   return (
@@ -102,7 +102,6 @@ export default function SingleProduct() {
           </ul>
         </div>
         <Link className="back-link" to="/">
-        {/* <Link className="back-link" to="/"> */}
           Home
         </Link>
       </div>
