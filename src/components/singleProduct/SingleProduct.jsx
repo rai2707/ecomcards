@@ -51,7 +51,7 @@ export default function SingleProduct() {
   if (isLoading || loading) {
     return (
       <div className="loader-container">
-        <Loader/>
+        {/* <Loader/> */}
       </div>
     );
   }
