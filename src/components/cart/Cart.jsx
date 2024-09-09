@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Cart.scss";
@@ -8,6 +8,10 @@ import { decrementQuantity, incrementQuantity, removeFromCart } from "../../redu
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const [showPinCodeInput, setShowPinCodeInput] = useState(false);
+  const [pincode, setPincode] = useState("");
+  const [deliveryAvailable, setDeliveryAvailable] = useState(null);
+  const validPincodes = [497339, 560068, 470023, 201206, 490026, 110012];
   const handleRemove = (item) => {
     dispatch(removeFromCart(item));
   };
@@ -18,6 +22,15 @@ export default function Cart() {
 
   const handleIncrement = (item) => {
     dispatch(incrementQuantity(item));
+  };
+
+  const handlePincodeSubmit = () => {
+    if (validPincodes.includes(parseInt(pincode))) {
+      setDeliveryAvailable(true);
+    } else {
+      setDeliveryAvailable(false);
+    }
+    setShowPinCodeInput(false);
   };
 
   if (cartItems.length === 0) {
@@ -33,7 +46,34 @@ export default function Cart() {
       <div className="cart-left">
         <div className="cart-address">
           <p>From Saved Addresses</p>
-          <button className="enter-pincode">Enter Delivery Pincode</button>
+          {setShowPinCodeInput ? (
+            <div className="pincode-input">
+              <input
+                type="text"
+                value={pincode}
+                onChange={(e) => setPincode(e.target.value)}
+                placeholder="Enter Pincode"
+                className="pincode-textbox"
+              />
+              <button onClick={handlePincodeSubmit} className="pincode-submit">
+                Submit
+              </button>
+            </div>
+          ) : (
+            <button
+              className="enter-pincode"
+              onClick={() => setShowPinCodeInput(true)}
+            >
+              Enter Delivery Pincode
+            </button>
+          )}
+
+          {deliveryAvailable === true && (
+            <p className="delivery-success">Delivery available for {pincode}</p>
+          )}
+          {deliveryAvailable === false && (
+            <p className="delivery-failure">Delivery not available for {pincode}</p>
+          )}
         </div>
 
         {cartItems.map((item, index) => (
